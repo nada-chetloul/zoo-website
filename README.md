@@ -1,23 +1,15 @@
 # 🦁 ZooManager — Application web de gestion d'un zoo
 
-> Projet universitaire réalisé en L2 Informatique — Année 2025-2026  
-> Développé par **Nada Cherine Chetloul** & **Yasmine Hadji**
+> Développé par **Nada Cherine Chetloul** 
 
 ---
 
 ## 📸 Aperçu
 
+<video src="https://github.com/user-attachments/assets/9dd81e6b-88db-46a3-a901-6482a78f43c6" controls width="100%"></video>
 
-<video src="[https://github.com/user-attachments/assets/ton-lien-ici](https://github.com/user-attachments/assets/9dd81e6b-88db-46a3-a901-6482a78f43c6
-)" controls width="100%"></video>
-
-<!-- SCREENSHOT 1 : Page d'accueil après connexion (avec les menus visibles) -->
 ![Page d'accueil](screenshots/accueil.png)
-
-<!-- SCREENSHOT 2 : Liste des animaux -->
 ![Liste des animaux](screenshots/animaux.png)
-
-<!-- SCREENSHOT 3 : Interface d'un rôle (ex. soigneur ou gestionnaire) -->
 ![Espace personnel](screenshots/espace-personnel.png)
 
 ---
@@ -268,7 +260,6 @@ Place tes captures dans un dossier `screenshots/` à la racine du repo :
 
 ---
 
-*L2 Informatique — Année universitaire 2025-2026*
 
 
 
