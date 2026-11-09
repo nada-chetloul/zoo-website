@@ -1,217 +1,217 @@
-# 🦁 ZooManager — Application web de gestion d'un zoo
+# 🦁 ZooManager — Zoo Management Web Application
 
-> Développé par **Nada Cherine Chetloul** 
+> Developed by **Nada Cherine Chetloul**
 
 ---
 
-## 📸 Aperçu
+## 📸 Preview
 
 <video src="https://github.com/user-attachments/assets/9dd81e6b-88db-46a3-a901-6482a78f43c6" controls width="100%"></video>
 
-<!-- SCREENSHOT 1 : Page d'accueil  -->
-![Page d'accueil](screenshots/princ.png)
-<!-- SCREENSHOT 2 : Page connexion (avec les menus visibles) -->
-![Page d'accueil](screenshots/cnx.png)
-<!-- SCREENSHOT 3 : Page d'accueil après connexion (avec les menus visibles) -->
-![Page d'accueil](screenshots/accueil.png)
-<!-- SCREENSHOT 4 : Liste des animaux -->
-![Liste des animaux](screenshots/animaux.png)
-<!-- SCREENSHOT 5 : Interface d'un rôle (ex. soigneur ou gestionnaire) -->
-![Espace personnel](screenshots/espace-personnel.png)
+<!-- SCREENSHOT 1: Home page -->
+![Home page](screenshots/princ.png)
+<!-- SCREENSHOT 2: Login page (with menus visible) -->
+![Login page](screenshots/cnx.png)
+<!-- SCREENSHOT 3: Home page after login (with menus visible) -->
+![Home page after login](screenshots/accueil.png)
+<!-- SCREENSHOT 4: List of animals -->
+![List of animals](screenshots/animaux.png)
+<!-- SCREENSHOT 5: A role's interface (e.g. keeper or manager) -->
+![Personal area](screenshots/espace-personnel.png)
 
 ---
 
 ## 🌐 Description
 
-ZooManager est une application web de gestion interne d'un zoo.  
-Elle permet à chaque membre du personnel d'accéder uniquement aux fonctionnalités liées à son poste, grâce à un système de rôles et de permissions géré en PHP.
+ZooManager is a web application for the internal management of a zoo.  
+It lets each staff member access only the features related to their position, thanks to a role and permission system handled in PHP.
 
-L'application distingue deux espaces :
-- **Espace personnel** — réservé aux employés du zoo (accès par identifiant et mot de passe)
-- **Espace visiteur** — permet aux visiteurs d'enregistrer un parrainage d'animal
+The application has two areas:
+- **Staff area** — reserved for zoo employees (access with username and password)
+- **Visitor area** — lets visitors register an animal sponsorship
 
 ---
 
-## 🛠️ Stack technique
+## 🛠️ Tech Stack
 
-| Élément | Technologie |
+| Element | Technology |
 |---|---|
 | Back-end | PHP (sessions, OCI, bcrypt) |
-| Base de données | Oracle |
+| Database | Oracle |
 | Front-end | HTML / CSS |
-| Sécurité | `password_hash()` / `password_verify()`, requêtes paramétrées |
+| Security | `password_hash()` / `password_verify()`, parameterized queries |
 
 ---
 
-## 🚀 Lancer le projet
+## 🚀 Running the Project
 
-1. Cloner le dépôt
-2. Configurer la connexion Oracle dans le fichier de configuration
-3. Ouvrir dans le navigateur :
+1. Clone the repository
+2. Configure the Oracle connection in the configuration file
+3. Open in your browser:
 
 ```
-http://10.1.16.112/~votre_login/index.php
+http://10.1.16.112/~your_login/index.php
 ```
 
 ---
 
-## 🔐 Comptes de test
+## 🔐 Test Accounts
 
-Tous les comptes utilisent le mot de passe par défaut : `monmotdepasse`  
-Il peut être changé à tout moment depuis l'interface (via `changer_mot_de_passe.php`).
+All accounts use the default password: `monmotdepasse`  
+It can be changed at any time from the interface (via `changer_mot_de_passe.php`).
 
-| Identifiant | Rôle | Niveau d'accès |
+| Username | Role | Access level |
 |---|---|---|
-| `user8` | Dirigeant | Maximum — accès complet |
-| `user7` | Gestionnaire | Élevé — gestion opérationnelle |
-| `user1` | Chef soigneur | Moyen-haut — soins & nourrissage |
-| `user10` | Vétérinaire | Moyen — suivi des soins |
-| `user2` | Soigneur | Moyen — soins & nourrissage |
-| `user4` | Technicien | Limité — réparations & enclos |
-| `user3` | Responsable boutique | Boutique — gestion boutique & CA |
-| `user6` | Comptable | Consultatif — CA uniquement |
-| `user9` | Employé boutique | Minimal — consultation boutique |
-| `user5` | Personnel d'entretien | Très limité — enclos uniquement |
+| `user8` | Director | Maximum — full access |
+| `user7` | Manager | High — operational management |
+| `user1` | Head keeper | Medium-high — care & feeding |
+| `user10` | Veterinarian | Medium — care follow-up |
+| `user2` | Keeper | Medium — care & feeding |
+| `user4` | Technician | Limited — repairs & enclosures |
+| `user3` | Shop manager | Shop — shop management & revenue |
+| `user6` | Accountant | Read-only — revenue only |
+| `user9` | Shop employee | Minimal — shop viewing |
+| `user5` | Maintenance staff | Very limited — enclosures only |
 
 ---
 
-## 🗄️ Structure de la base de données
+## 🗄️ Database Structure
 
 <details>
-<summary>Voir les tables principales</summary>
+<summary>View the main tables</summary>
 
 | Table | Description |
 |---|---|
-| `personnel` | Tous les employés (login, mot de passe hashé, fonction, zone) |
-| `animal` | Animaux (espèce, enclos, poids, régime alimentaire, filiation) |
-| `soigner` | Interventions de soin (animal, personnel, type de soin, date) |
-| `nourrir` | Nourrissages (animal, personnel, nourriture, date) |
-| `boutique` | Boutiques du zoo |
-| `employe_boutique` | Lien employés / boutiques |
-| `reparation` | Réparations (nature Petit/Gros, libellé) |
-| `faite` | Lien réparation ↔ enclos |
-| `personnel_technique` | Lien technicien ↔ réparation Petit |
-| `realise` | Lien prestataire ↔ réparation Gros |
-| `parrainage` | Parrainages d'animaux (niveau, prestation) |
-| `parraine` | Parrains (nom, prénom) |
-| `ca_journalier` | Chiffre d'affaires journalier par boutique |
+| `personnel` | All employees (login, hashed password, role, area) |
+| `animal` | Animals (species, enclosure, weight, diet, lineage) |
+| `soigner` | Care interventions (animal, staff, type of care, date) |
+| `nourrir` | Feedings (animal, staff, food, date) |
+| `boutique` | Zoo shops |
+| `employe_boutique` | Link between employees / shops |
+| `reparation` | Repairs (nature Small/Large, description) |
+| `faite` | Link between repair ↔ enclosure |
+| `personnel_technique` | Link between technician ↔ Small repair |
+| `realise` | Link between contractor ↔ Large repair |
+| `parrainage` | Animal sponsorships (level, benefit) |
+| `parraine` | Sponsors (last name, first name) |
+| `ca_journalier` | Daily revenue per shop |
 
 </details>
 
 ---
 
-## 👥 Rôles et permissions
+## 👥 Roles and Permissions
 
-Chaque page PHP vérifie `$_SESSION['fonction']` en haut de fichier et redirige si l'accès n'est pas autorisé. Voici ce que chaque rôle peut faire :
+Each PHP page checks `$_SESSION['fonction']` at the top of the file and redirects if access is not authorized. Here is what each role can do:
 
 <details>
-<summary>🔴 Dirigeant — accès maximal</summary>
+<summary>🔴 Director — maximum access</summary>
 
-Accède à tous les menus : animaux, personnel, enclos, boutique, CA, réparations, parrainage.  
-Peut modifier et supprimer des membres du personnel, consulter les parrainages avec filtres.
+Has access to all menus: animals, staff, enclosures, shops, revenue, repairs, sponsorships.  
+Can edit and delete staff members, and view sponsorships with filters.
 
 </details>
 
 <details>
-<summary>🟠 Gestionnaire — gestion opérationnelle</summary>
+<summary>🟠 Manager — operational management</summary>
 
-Seul rôle pouvant **ajouter**, **modifier** ou **supprimer** du personnel.  
-Peut ajouter/modifier des boutiques, affecter un responsable de boutique, ajouter des animaux.
-
-</details>
-
-<details>
-<summary>🟡 Chef soigneur & Soigneur — soins et nourrissage</summary>
-
-Peuvent enregistrer des soins simples (vaccination, brossage, nettoyage) et des nourrissages.  
-Si un type de nourriture n'existe pas encore en base, il est créé automatiquement.  
-Aucun accès à la gestion du personnel ou à la boutique.
+The only role that can **add**, **edit**, or **delete** staff.  
+Can add/edit shops, assign a shop manager, and add animals.
 
 </details>
 
 <details>
-<summary>🟢 Vétérinaire — suivi des soins uniquement</summary>
+<summary>🟡 Head keeper & Keeper — care and feeding</summary>
 
-Accède uniquement au suivi des soins **complexes** (examen, chirurgie, radiographie).  
-Tout le reste est bloqué.
-
-</details>
-
-<details>
-<summary>🔵 Technicien — réparations Petit uniquement</summary>
-
-Peut ajouter des réparations de type **Petit** uniquement.  
-Double protection : l'option "Gros" est absente du HTML **et** refusée côté serveur PHP.  
-Son identifiant est pré-rempli automatiquement dans le formulaire.
+Can record simple care (vaccination, brushing, cleaning) and feedings.  
+If a type of food does not yet exist in the database, it is created automatically.  
+No access to staff management or the shop.
 
 </details>
 
 <details>
-<summary>🟣 Responsable boutique — gestion de sa boutique</summary>
+<summary>🟢 Veterinarian — care follow-up only</summary>
 
-Gère les employés de sa boutique et consulte le CA.  
-Ne peut pas affecter de responsable (réservé au Gestionnaire).
+Only has access to the follow-up of **complex** care (examination, surgery, X-ray).  
+Everything else is blocked.
 
 </details>
 
 <details>
-<summary>⚪ Comptable, Employé boutique, Personnel d'entretien</summary>
+<summary>🔵 Technician — Small repairs only</summary>
 
-Accès en **lecture seule** sur leur périmètre respectif (CA, boutique, enclos).  
-Aucune action de saisie ou de gestion.
+Can only add **Small** type repairs.  
+Double protection: the "Large" option is absent from the HTML **and** rejected on the PHP server side.  
+Their identifier is automatically pre-filled in the form.
+
+</details>
+
+<details>
+<summary>🟣 Shop manager — managing their shop</summary>
+
+Manages the employees of their shop and views the revenue.  
+Cannot assign a manager (reserved for the Manager role).
+
+</details>
+
+<details>
+<summary>⚪ Accountant, Shop employee, Maintenance staff</summary>
+
+**Read-only** access within their respective scope (revenue, shop, enclosures).  
+No data entry or management actions.
 
 </details>
 
 ---
 
-## ⚙️ Points techniques notables
+## ⚙️ Notable Technical Points
 
-### Authentification (`login2.php`)
-1. Recherche de l'identifiant avec `TRIM()` pour éviter les espaces parasites Oracle
-2. Vérification du mot de passe via `password_verify()` contre le hash bcrypt en base
-3. Stockage en session : `id_personnel`, `nom`, `prenom`, `fonction`
-4. Toutes les pages protégées vérifient `isset($_SESSION['id_personnel'])` et redirigent sinon
-5. La déconnexion (`logout.php`) appelle `session_unset()` + `session_destroy()`
+### Authentication (`login2.php`)
+1. The username is looked up with `TRIM()` to avoid stray Oracle spaces
+2. The password is verified via `password_verify()` against the bcrypt hash in the database
+3. Session storage: `id_personnel`, `nom`, `prenom`, `fonction`
+4. All protected pages check `isset($_SESSION['id_personnel'])` and redirect otherwise
+5. Logout (`logout.php`) calls `session_unset()` + `session_destroy()`
 
-### Requêtes Oracle paramétrées
-Toutes les requêtes utilisent `oci_bind_by_name()`.  
-Les filtres optionnels suivent ce pattern :
+### Parameterized Oracle Queries
+All queries use `oci_bind_by_name()`.  
+Optional filters follow this pattern:
 ```sql
 WHERE (:param IS NULL OR LOWER(champ) LIKE LOWER('%' || :param || '%'))
 ```
-La chaîne vide est convertie en `null` PHP avant le bind pour ignorer le filtre automatiquement.
+The empty string is converted to PHP `null` before binding so the filter is ignored automatically.
 
-### Transactions et rollback (`ajout_reparation.php`)
-L'ajout d'une réparation touche plusieurs tables (`reparation`, `faite`, puis `personnel_technique` ou `realise`).  
-Le code utilise `OCI_NO_AUTO_COMMIT` sur chaque insertion intermédiaire et n'appelle `oci_commit()` que si tout réussit — sinon `oci_rollback()`.
+### Transactions and Rollback (`ajout_reparation.php`)
+Adding a repair touches several tables (`reparation`, `faite`, then `personnel_technique` or `realise`).  
+The code uses `OCI_NO_AUTO_COMMIT` on each intermediate insert and only calls `oci_commit()` if everything succeeds — otherwise `oci_rollback()`.
 
-### Création automatique de nourriture (`ajout_nourrissage.php`)
-Si le type de nourriture saisi n'existe pas encore :
-1. Calcul d'un nouvel id via `MAX(id_nourriture) + 1`
-2. Insertion avec `dose_journaliere = 0`
-3. Puis insertion du nourrissage normalement
+### Automatic Food Creation (`ajout_nourrissage.php`)
+If the entered food type does not exist yet:
+1. A new id is computed via `MAX(id_nourriture) + 1`
+2. It is inserted with `dose_journaliere = 0`
+3. Then the feeding is inserted normally
 
-Cela évite une erreur de clé étrangère sans obliger l'utilisateur à pré-créer la nourriture.
+This avoids a foreign key error without forcing the user to create the food beforehand.
 
-### Double protection Technicien
-Le type "Gros" est bloqué à deux niveaux :
-- **HTML** : l'option n'apparaît pas dans le `<select>` (rendu conditionnel PHP)
-- **PHP serveur** : vérification explicite — même si le HTML est manipulé côté client, le serveur refuse
+### Double Technician Protection
+The "Large" type is blocked at two levels:
+- **HTML**: the option does not appear in the `<select>` (conditional PHP rendering)
+- **PHP server**: explicit check — even if the HTML is manipulated client-side, the server refuses
 
-### Gestion des encodages Oracle (`Vétérinaire`)
-La condition dans `accueil.php` teste plusieurs variantes orthographiques pour gérer les problèmes d'encodage UTF-8 / Oracle :
+### Handling Oracle Encodings (`Vétérinaire`)
+The condition in `accueil.php` tests several spelling variants to handle UTF-8 / Oracle encoding issues:
 ```php
 if ($fonction == "Veterinaire" || $fonction == "Vétérinaire")
 ```
 
-### Anti-doublon responsable boutique (`affecter_responsable_boutique.php`)
-Deux `SELECT` préalables vérifient :
-1. Que la boutique n'a pas déjà un responsable (`est_responsable = 1`)
-2. Que le personnel n'est pas déjà lié à cette boutique
+### Shop Manager Duplicate Prevention (`affecter_responsable_boutique.php`)
+Two preliminary `SELECT`s check:
+1. That the shop does not already have a manager (`est_responsable = 1`)
+2. That the staff member is not already linked to this shop
 
 ---
 
-## 📁 Structure du projet
+## 📁 Project Structure
 
 ```
 zoo-manager/
@@ -255,21 +255,12 @@ zoo-manager/
 
 ---
 
-## 📷 Screenshots à ajouter
+## 📷 Screenshots to Add
 
-Place tes captures dans un dossier `screenshots/` à la racine du repo :
+Place your screenshots in a `screenshots/` folder at the root of the repo:
 
-| Fichier | Ce qu'il doit montrer |
+| File | What it should show |
 |---|---|
-| `screenshots/accueil.png` | Page d'accueil après connexion avec les menus visibles |
-| `screenshots/animaux.png` | Liste des animaux (table avec données réelles) |
-| `screenshots/espace-personnel.png` | Vue connectée d'un rôle (ex. gestionnaire) |
-
----
-
-
-
-
-
-
-
+| `screenshots/accueil.png` | Home page after login with menus visible |
+| `screenshots/animaux.png` | List of animals (table with real data) |
+| `screenshots/espace-personnel.png` | Logged-in view of a role (e.g. manager) |
